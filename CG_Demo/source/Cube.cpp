@@ -56,6 +56,9 @@ void Cube::update() {
 void Cube::draw() {
 	glPushMatrix(); 
 	{
+		float mcolor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
+
+		glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
 		glColor3f(r, g, b);
 		glTranslatef(pos_x, pos_y, pos_z);
 		glRotatef(rot_x, 1, 0, 0);

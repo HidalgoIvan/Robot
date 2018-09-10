@@ -27,11 +27,18 @@ Cube* armR1;
 Cube* armR2;
 Cube* foreArmR;
 Cube* handR;
+Cube* legL;
+Cube* pantL;
+Cube* footL;
+Cube* legR;
+Cube* pantR;
+Cube* footR;
+
 Robot::Robot()
 {
 }
 float bobbing = 0.0f;
-float bobbingStep = .02f;
+float bobbingStep = .002f;
 void init() // FOR GLUT LOOP
 {
 	glEnable(GL_DEPTH_TEST);			// Enable check for close and far objects.
@@ -86,13 +93,14 @@ void init() // FOR GLUT LOOP
 	foreArmL = new Cube();
 	foreArmL->setColor(202, 0, 42);//Rojo
 	foreArmL->setScale(.8f, 1.45f, .8f);
-	foreArmL->setPosition(1.75f, .975f, 0);
+	foreArmL->setPosition(1.75f, 1.1f, 0);
 	foreArmL->setRotation(0, 0, 0);
 	handL = new Cube();
 	handL->setColor(30, 144, 255);//Azul
 	handL->setScale(.65f, .65, .65f);
-	handL->setPosition(1.75f, -.075f, 0);
+	handL->setPosition(1.75f, 0.075f, 0);
 	handL->setRotation(0, 0, 0);
+	
 	//Right arm
 	armR1 = new Cube();
 	armR1->setColor(202, 0, 42);//Rojo
@@ -107,21 +115,59 @@ void init() // FOR GLUT LOOP
 	foreArmR = new Cube();
 	foreArmR->setColor(202, 0, 42);//Rojo
 	foreArmR->setScale(.8f, 1.45f, .8f);
-	foreArmR->setPosition(-1.75f, .975f, 0);
+	foreArmR->setPosition(-1.75f, 1.1f, 0);
 	foreArmR->setRotation(0, 0, 0);
 	handR = new Cube();
 	handR->setColor(30, 144, 255);//Azul
 	handR->setScale(.65f, .65, .65f);
-	handR->setPosition(-1.75f, -.075f, 0);
+	handR->setPosition(-1.75f, 0.075f, 0);
 	handR->setRotation(0, 0, 0);
+	//epa epa mi piernita izquierda
+	legL = new Cube();
+	legL->setColor(240, 240, 240);//Blanco
+	legL->setScale(.9f, 2.0f, .9f);
+	legL->setPosition(0.65f, -1.5f, 0);
+	legL->setRotation(0, 0, 0);
+
+	pantL = new Cube();
+	pantL->setColor(30, 144, 255);//Azul
+	pantL->setScale(1.0f, 2.0f, 1.0f);
+	pantL->setPosition(0.65f, -3.5f, 0);
+	pantL->setRotation(0, 0, 0);
+
+	footL = new Cube();
+	footL->setColor(30, 144, 255);//Azul
+	footL->setScale(1.0f, 0.5f, 1.5f);
+	footL->setPosition(0.65f, -4.75f, 0.25f);
+	footL->setRotation(0, 0, 0);
+	//epa epa mi piernita derecha
+	legR = new Cube();
+	legR->setColor(240, 240, 240);//Blanco
+	legR->setScale(.9f, 2.0f, .9f);
+	legR->setPosition(-0.65f, -1.5f, 0);
+	legR->setRotation(0, 0, 0);
+
+	pantR = new Cube();
+	pantR->setColor(30, 144, 255);//Azul
+	pantR->setScale(1.0f, 2.0f, 1.0f);
+	pantR->setPosition(-0.65f, -3.5f, 0);
+	pantR->setRotation(0, 0, 0);
+
+	footR = new Cube();
+	footR->setColor(30, 144, 255);//Azul
+	footR->setScale(1.0f, 0.5f, 1.5f);
+	footR->setPosition(-0.65f, -4.75f, 0.25f);
+	footR->setRotation(0, 0, 0);
+
+
 }
 
 void display()							// Called for each frame (about 60 times per second).
 {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);				// Clear color and depth buffers.
 	glLoadIdentity();												// Reset 3D view matrix.
-	gluLookAt(0, 2.6f, 10,										// Where the camera is.
-		0, 2.6f, 0.0,										// To where the camera points at.
+	gluLookAt(10.0f, 10.0f, 10.0f,										// Where the camera is.
+		0, -2.0f, 0.0,										// To where the camera points at.
 		0.0, 1.0, 0.0);										// "UP" vector.
 	glPointSize(5);
 	glPushMatrix();
@@ -134,6 +180,12 @@ void display()							// Called for each frame (about 60 times per second).
 		body3->draw();
 		armL1->draw();
 		armL2->draw();
+		legL->draw();
+		pantL->draw();
+		footL->draw();
+		legR->draw();
+		pantR->draw();
+		footR->draw();
 		glPushMatrix();
 		{
 			glRotatef(-3, 0, 0, 1);
@@ -152,6 +204,23 @@ void display()							// Called for each frame (about 60 times per second).
 		glPopMatrix();
 	}
 	glPopMatrix();
+	
+	// Somewhere in the initialization part of your program…
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+
+	// Create light components
+	float ambientLight[] = { 1.2f, 0.2f, 0.2f, 1.0f };
+	float diffuseLight[] = { 0.8f, 0.8f, 1.8, 1.0f };
+	float specularLight[] = { 0.5f, 1.5f, 0.5f, 1.0f };
+	float position[] = { 1.5f, -1.0f, 4.0f, -1.0f };
+
+	// Assign created components to GL_LIGHT0
+	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
+	glLightfv(GL_LIGHT0, GL_POSITION, position);
+	
 	glutSwapBuffers();												// Swap the hidden and visible buffers.
 }
 
@@ -180,6 +249,7 @@ void reshape(int h, int v)											// Called when the window geometry changes.
 
 int Robot::run(int argc, char* argv[])
 {
+
 	glutInit(&argc, argv);											// Init GLUT with command line parameters.
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_DEPTH | GLUT_RGB);		// Use 2 buffers (hidden and visible). Use the depth buffer. Use 3 color channels.
 	glutInitWindowSize(800, 600);

@@ -25,6 +25,7 @@
 Robot* robot;
 int main(int argc, char* argv[])
 {
+	
 	robot->run(argc,argv);
 	return 0;
 }
