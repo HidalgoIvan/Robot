@@ -23,6 +23,10 @@ Cube* armL1;
 Cube* armL2;
 Cube* foreArmL;
 Cube* handL;
+Cube* armR1;
+Cube* armR2;
+Cube* foreArmR;
+Cube* handR;
 Robot::Robot()
 {
 }
@@ -89,6 +93,27 @@ void init() // FOR GLUT LOOP
 	handL->setScale(.65f, .65, .65f);
 	handL->setPosition(1.75f, -.075f, 0);
 	handL->setRotation(0, 0, 0);
+	//Right arm
+	armR1 = new Cube();
+	armR1->setColor(202, 0, 42);//Rojo
+	armR1->setScale(.8f, .65f, .8f);
+	armR1->setPosition(-1.75f, 2.675f, 0);
+	armR1->setRotation(0, 0, 0);
+	armR2 = new Cube();
+	armR2->setColor(240, 240, 240);//Blanco
+	armR2->setScale(.6f, .65f, .6f);
+	armR2->setPosition(-1.75f, 2.025f, 0);
+	armR2->setRotation(0, 0, 0);
+	foreArmR = new Cube();
+	foreArmR->setColor(202, 0, 42);//Rojo
+	foreArmR->setScale(.8f, 1.45f, .8f);
+	foreArmR->setPosition(-1.75f, .975f, 0);
+	foreArmR->setRotation(0, 0, 0);
+	handR = new Cube();
+	handR->setColor(30, 144, 255);//Azul
+	handR->setScale(.65f, .65, .65f);
+	handR->setPosition(-1.75f, -.075f, 0);
+	handR->setRotation(0, 0, 0);
 }
 
 void display()							// Called for each frame (about 60 times per second).
@@ -109,8 +134,22 @@ void display()							// Called for each frame (about 60 times per second).
 		body3->draw();
 		armL1->draw();
 		armL2->draw();
-		foreArmL->draw();
-		handL->draw();
+		glPushMatrix();
+		{
+			glRotatef(-3, 0, 0, 1);
+			foreArmL->draw();
+			handL->draw();
+		}
+		glPopMatrix();
+		armR1->draw();
+		armR2->draw();
+		glPushMatrix();
+		{
+			glRotatef(3, 0, 0, 1);
+			foreArmR->draw();
+			handR->draw();
+		}
+		glPopMatrix();
 	}
 	glPopMatrix();
 	glutSwapBuffers();												// Swap the hidden and visible buffers.
