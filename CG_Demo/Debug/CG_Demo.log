@@ -1,0 +1,5 @@
+﻿  Robot.cpp
+c:\users\iván\desktop\graf\animation\cg_demo\source\robot.cpp(34): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\iván\desktop\graf\animation\cg_demo\source\robot.cpp(89): warning C4305: 'argument': truncation from 'double' to 'float'
+  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Graf\Animation\Debug\CG_Demo.exe
+  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Graf\Animation\Debug\CG_Demo.pdb (Full PDB)
