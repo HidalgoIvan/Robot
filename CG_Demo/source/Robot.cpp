@@ -33,12 +33,14 @@ Cube* footL;
 Cube* legR;
 Cube* pantR;
 Cube* footR;
-
+Cube* plane;
 Robot::Robot()
 {
 }
 float bobbing = 0.0f;
-float bobbingStep = .002f;
+float bobbingStep = .02f;
+float rotationGlobal = 0.0f;
+float rotationStep = 1.7f;
 void init() // FOR GLUT LOOP
 {
 	glEnable(GL_DEPTH_TEST);			// Enable check for close and far objects.
@@ -51,6 +53,29 @@ void init() // FOR GLUT LOOP
 	->setPosition(0, 0, 0);
 	->setRotation(0, 0, 0);
 	*/
+	//Top spotlight
+	glShadeModel(GL_SMOOTH);
+	glLightModeli(GL_LIGHT_MODEL_LOCAL_VIEWER, GL_TRUE);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
+	GLfloat light_ambient[] = { 0.0, 0.0, 0.0, 1.0 };
+	GLfloat light_diffuse[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_specular[] = { 1.0, 1.0, 1.0, 1.0 };
+	GLfloat light_position[] = { 0.0, 5.0, 0.0, 0.0 };
+
+	glLightfv(GL_LIGHT0, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT0, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT0, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT0, GL_POSITION, light_position);
+
+	//Front-ish spotlight
+	glEnable(GL_LIGHT1);
+	GLfloat light_position2[] = { 1.0, 1.0, 7.0, 0.0 };
+
+	glLightfv(GL_LIGHT1, GL_AMBIENT, light_ambient);
+	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
+	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
+	glLightfv(GL_LIGHT1, GL_POSITION, light_position2);
 	//Head
 	head = new Cube();
 	head->setColor(30, 144, 255);//Azul
@@ -88,17 +113,17 @@ void init() // FOR GLUT LOOP
 	armL2 = new Cube();
 	armL2->setColor(240, 240, 240);//Blanco
 	armL2->setScale(.6f, .65f, .6f);
-	armL2->setPosition(1.75f, 2.025f, 0);
+	armL2->setPosition(1.75f, 3.325f, 0);
 	armL2->setRotation(0, 0, 0);
 	foreArmL = new Cube();
 	foreArmL->setColor(202, 0, 42);//Rojo
 	foreArmL->setScale(.8f, 1.45f, .8f);
-	foreArmL->setPosition(1.75f, 1.1f, 0);
+	foreArmL->setPosition(1.75f, 4.375f, 0);
 	foreArmL->setRotation(0, 0, 0);
 	handL = new Cube();
 	handL->setColor(30, 144, 255);//Azul
-	handL->setScale(.65f, .65, .65f);
-	handL->setPosition(1.75f, 0.075f, 0);
+	handL->setScale(.65f, .65f, .65f);
+	handL->setPosition(1.75f, 5.425f, 0);
 	handL->setRotation(0, 0, 0);
 	
 	//Right arm
@@ -122,7 +147,8 @@ void init() // FOR GLUT LOOP
 	handR->setScale(.65f, .65, .65f);
 	handR->setPosition(-1.75f, 0.075f, 0);
 	handR->setRotation(0, 0, 0);
-	//epa epa mi piernita izquierda
+	//left leg
+	glRotatef(rotationGlobal,1,0,0);
 	legL = new Cube();
 	legL->setColor(240, 240, 240);//Blanco
 	legL->setScale(.9f, 2.0f, .9f);
@@ -140,7 +166,7 @@ void init() // FOR GLUT LOOP
 	footL->setScale(1.0f, 0.5f, 1.5f);
 	footL->setPosition(0.65f, -4.75f, 0.25f);
 	footL->setRotation(0, 0, 0);
-	//epa epa mi piernita derecha
+	//right leg
 	legR = new Cube();
 	legR->setColor(240, 240, 240);//Blanco
 	legR->setScale(.9f, 2.0f, .9f);
@@ -159,68 +185,151 @@ void init() // FOR GLUT LOOP
 	footR->setPosition(-0.65f, -4.75f, 0.25f);
 	footR->setRotation(0, 0, 0);
 
-
+	plane = new Cube();
+	plane->setColor(4, 2, 0);
+	plane->setScale(80.0f, .2f, 80.0f);
+	plane->setPosition(0, -5.9f, 0);
+	plane->setRotation(0, 0, 0);
 }
 
 void display()							// Called for each frame (about 60 times per second).
 {
+	printf("%f		%f		\n",rotationGlobal, rotationStep);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);				// Clear color and depth buffers.
 	glLoadIdentity();												// Reset 3D view matrix.
 	gluLookAt(10.0f, 10.0f, 10.0f,										// Where the camera is.
 		0, -2.0f, 0.0,										// To where the camera points at.
 		0.0, 1.0, 0.0);										// "UP" vector.
 	glPointSize(5);
+	plane->draw();
 	glPushMatrix();
 	{
-		glTranslatef(0, bobbing, 0);
+		glTranslatef(0, rotationGlobal / 200.0f, 0);
 		head->draw();
 		neck->draw();
-		body1->draw();
-		body2->draw();
-		body3->draw();
-		armL1->draw();
-		armL2->draw();
-		legL->draw();
-		pantL->draw();
-		footL->draw();
-		legR->draw();
-		pantR->draw();
-		footR->draw();
 		glPushMatrix();
 		{
-			glRotatef(-3, 0, 0, 1);
-			foreArmL->draw();
-			handL->draw();
+			glRotatef(rotationGlobal / 6.0f, 0, 1, 0);
+			body1->draw();
 		}
 		glPopMatrix();
-		armR1->draw();
-		armR2->draw();
+		body2->draw();
 		glPushMatrix();
 		{
-			glRotatef(3, 0, 0, 1);
-			foreArmR->draw();
-			handR->draw();
+			glRotatef(rotationGlobal / 3.0f, 0, 1, 0);
+			body3->draw();
+			//Left arm
+			glPushMatrix();
+			{
+				glTranslatef(-1.75f, 2.675, 0);
+				glRotatef(180, 1, 0, 0);
+				glRotatef(rotationGlobal / 3.0f, 1, 0, 0);
+				glTranslatef(1.75f, -2.675f, 0);
+				armL1->draw();
+				armL2->draw();
+				glTranslatef(0,1.45f,0);
+				glRotatef(-10,1,0,0);
+				glRotatef(10, 0, 0, 1);
+				glTranslatef(.4f, -1.9f, .35f);
+				foreArmL->draw();
+				handL->draw();
+			}
+			glPopMatrix();
+			//Right arm
+			glPushMatrix();
+			{
+				glTranslatef(1.75f, 2.675, 0);
+				glRotatef(-rotationGlobal / 3.0f, 1, 0, 0);
+				glTranslatef(-1.75f, -2.675f, 0);
+				armR1->draw();
+				armR2->draw();
+				glTranslatef(0, -1.45f, 0);
+				glRotatef(-10,1,0,0);
+				glRotatef(10, 0, 0, 1);
+				glTranslatef(.47f, 1.45f, .5f);
+				foreArmR->draw();
+				handR->draw();
+			}
+			glPopMatrix();
+		}
+		glPopMatrix();
+		//Legs
+		glPushMatrix();
+		{
+			glRotatef(rotationGlobal, 1, 0, 0);
+			legL->draw();
+			glPushMatrix();
+			{
+				glTranslatef(0, -2.65f, 0);
+				if (rotationStep > 0 && rotationGlobal < 10 && rotationGlobal > 0)//Tieso
+				{
+					glRotatef(0, 1, 0, 0);
+				}
+				else
+				{
+					if (rotationStep > 0 && rotationGlobal > 10)
+					{
+						glRotatef(rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep < 0 && rotationGlobal > 0)
+					{
+						glRotatef(rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep < 0 && rotationGlobal < 0)
+					{
+						glRotatef(-rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep >= 0 && rotationGlobal <= 0)
+					{
+						glRotatef(-rotationGlobal, 1, 0, 0);
+					}
+				}
+				glTranslatef(0, 2.65f, 0);
+				pantL->draw();
+				footL->draw();
+			}
+			glPopMatrix();
+		}
+		glPopMatrix();
+		glPushMatrix();
+		{
+			glRotatef(-rotationGlobal, 1, 0, 0);
+			legR->draw();
+			glPushMatrix();
+			{
+				glTranslatef(0, -2.65f, 0);
+				if (rotationStep < 0 && rotationGlobal > 10 && rotationGlobal < 0)//Tieso
+				{
+					glRotatef(0, 1, 0, 0);
+				}
+				else
+				{
+					if (rotationStep < 0 && rotationGlobal < 10)
+					{
+						glRotatef(-rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep > 0 && rotationGlobal < 0)
+					{
+						glRotatef(-rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep > 0 && rotationGlobal > 0)
+					{
+						glRotatef(rotationGlobal, 1, 0, 0);
+					}
+					if (rotationStep <= 0 && rotationGlobal >= 0)
+					{
+						glRotatef(rotationGlobal, 1, 0, 0);
+					}
+				}
+				glTranslatef(0, 2.65f, 0);
+				pantR->draw();
+				footR->draw();
+			}
+			glPopMatrix();
 		}
 		glPopMatrix();
 	}
 	glPopMatrix();
-	
-	// Somewhere in the initialization part of your program…
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
-
-	// Create light components
-	float ambientLight[] = { 1.2f, 0.2f, 0.2f, 1.0f };
-	float diffuseLight[] = { 0.8f, 0.8f, 1.8, 1.0f };
-	float specularLight[] = { 0.5f, 1.5f, 0.5f, 1.0f };
-	float position[] = { 1.5f, -1.0f, 4.0f, -1.0f };
-
-	// Assign created components to GL_LIGHT0
-	glLightfv(GL_LIGHT0, GL_AMBIENT, ambientLight);
-	glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuseLight);
-	glLightfv(GL_LIGHT0, GL_SPECULAR, specularLight);
-	glLightfv(GL_LIGHT0, GL_POSITION, position);
-	
 	glutSwapBuffers();												// Swap the hidden and visible buffers.
 }
 
@@ -230,6 +339,11 @@ void idle()															// Called when drawing is finished.
 	if (bobbing > .3f || bobbing < -.3f) 
 	{
 		bobbingStep = -bobbingStep;
+	}
+	rotationGlobal += rotationStep;
+	if (rotationGlobal > 20.0f || rotationGlobal < -20.0f)
+	{
+		rotationStep = -rotationStep;
 	}
 	glutPostRedisplay();											// Display again.
 }

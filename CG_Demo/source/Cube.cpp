@@ -26,6 +26,7 @@ float rot_z;
 float r;
 float g;
 float b;
+float color[4];
 Cube::Cube()
 {
 
@@ -34,6 +35,10 @@ void Cube::setColor(float _r, float _g, float _b) {
 	r = _r / 255.0f;
 	g = _g / 255.0f;
 	b = _b / 255.0f;
+	color[0] = r;
+	color[1] = g;
+	color[2] = b;
+	color[3] = 1;
 }
 void Cube::setScale(float x, float y, float z) {
 	scale_x = x;
@@ -56,10 +61,9 @@ void Cube::update() {
 void Cube::draw() {
 	glPushMatrix(); 
 	{
-		float mcolor[] = { 1.0f, 0.0f, 0.0f, 1.0f };
-
-		glMaterialfv(GL_FRONT, GL_AMBIENT_AND_DIFFUSE, mcolor);
-		glColor3f(r, g, b);
+		
+		glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+		//glColor3f(r, g, b);
 		glTranslatef(pos_x, pos_y, pos_z);
 		glRotatef(rot_x, 1, 0, 0);
 		glRotatef(rot_y, 0, 1, 0);

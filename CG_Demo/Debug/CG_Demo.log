@@ -1,9 +1,7 @@
-﻿  Cube.cpp
-  Robot.cpp
-c:\users\luis_\documents\universidad\7mo semestre\graficas\1erproyecto\robot\cg_demo\source\robot.cpp(45): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\luis_\documents\universidad\7mo semestre\graficas\1erproyecto\robot\cg_demo\source\robot.cpp(100): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\luis_\documents\universidad\7mo semestre\graficas\1erproyecto\robot\cg_demo\source\robot.cpp(122): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\luis_\documents\universidad\7mo semestre\graficas\1erproyecto\robot\cg_demo\source\robot.cpp(214): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
-c:\users\luis_\documents\universidad\7mo semestre\graficas\1erproyecto\robot\cg_demo\source\robot.cpp(214): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Generating Code...
-  CG_Demo.vcxproj -> C:\Users\luis_\Documents\Universidad\7mo Semestre\Graficas\1erProyecto\Robot\Debug\CG_Demo.exe
+﻿  Robot.cpp
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(47): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(147): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(224): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(241): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.exe
+  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.pdb (Full PDB)

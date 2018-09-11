@@ -15,6 +15,7 @@ public:
 	float r;
 	float g;
 	float b;
+	float color[4];
 	void setColor(float _r, float _g, float _b);
 	void setScale(float x, float y, float z);
 	void setPosition(float x, float y, float z);
