@@ -34,6 +34,7 @@ Cube* legR;
 Cube* pantR;
 Cube* footR;
 Cube* plane;
+Cube* rock;
 Robot::Robot()
 {
 }
@@ -41,6 +42,8 @@ float bobbing = 0.0f;
 float bobbingStep = .02f;
 float rotationGlobal = 0.0f;
 float rotationStep = 1.7f;
+float rockPosition = -5.0f;
+float rockStep = .2f;
 void init() // FOR GLUT LOOP
 {
 	glEnable(GL_DEPTH_TEST);			// Enable check for close and far objects.
@@ -76,6 +79,12 @@ void init() // FOR GLUT LOOP
 	glLightfv(GL_LIGHT1, GL_DIFFUSE, light_diffuse);
 	glLightfv(GL_LIGHT1, GL_SPECULAR, light_specular);
 	glLightfv(GL_LIGHT1, GL_POSITION, light_position2);
+
+	rock = new Cube();
+	rock->setColor(100, 100, 100);
+	rock->setScale(1, 1, 1);
+	rock->setPosition(0, -2, -5);
+	rock->setRotation(0, 0, 0);
 	//Head
 	head = new Cube();
 	head->setColor(30, 144, 255);//Azul
@@ -204,19 +213,25 @@ void display()							// Called for each frame (about 60 times per second).
 	plane->draw();
 	glPushMatrix();
 	{
+		rock->setPosition(0,-4, rockPosition);
+		rock->draw();
+	}
+	glPopMatrix();
+	glPushMatrix();
+	{
 		glTranslatef(0, rotationGlobal / 200.0f, 0);
 		head->draw();
 		neck->draw();
 		glPushMatrix();
 		{
-			glRotatef(rotationGlobal / 6.0f, 0, 1, 0);
+			glRotatef(rotationGlobal / 4.0f, 0, 1, 0);
 			body1->draw();
 		}
 		glPopMatrix();
 		body2->draw();
 		glPushMatrix();
 		{
-			glRotatef(rotationGlobal / 3.0f, 0, 1, 0);
+			glRotatef(rotationGlobal * .6f, 0, 1,0);
 			body3->draw();
 			//Left arm
 			glPushMatrix();
@@ -344,6 +359,11 @@ void idle()															// Called when drawing is finished.
 	if (rotationGlobal > 20.0f || rotationGlobal < -20.0f)
 	{
 		rotationStep = -rotationStep;
+	}
+	rockPosition -= rockStep;
+	if (rockPosition < 10)
+	{
+		rockPosition = 5;
 	}
 	glutPostRedisplay();											// Display again.
 }

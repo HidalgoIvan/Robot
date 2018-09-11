@@ -1,7 +1,7 @@
 ﻿  Robot.cpp
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(47): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(147): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(224): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(241): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(50): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(156): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(239): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
+c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(256): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
   CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.exe
   CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.pdb (Full PDB)
