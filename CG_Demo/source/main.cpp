@@ -1,8 +1,8 @@
 /*
-* Ernesto Iván Ochoa Hidalgo A01651425
-* Alejandro "El navajas" Peña
-* Ana Karen "Peña" Peña
-* Arturo "La rata" Macías
+* Ernesto Ivï¿½n Ochoa Hidalgo A01651425
+* Alejandro Peï¿½a Montoya	 A01650535
+* Ana Karen Campos Garcia	 A013350537
+* Arturo Fischer Garza		 A01334880
 * TC3022. Computer Graphics Course.
 * Robot walk animation.
 */
