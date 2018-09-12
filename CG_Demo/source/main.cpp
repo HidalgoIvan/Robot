@@ -1,8 +1,10 @@
 /*
-* Sergio Ruiz.
-*
+* Ernesto Iván Ochoa Hidalgo A01651425
+* Alejandro "El navajas" Peña
+* Ana Karen "Peña" Peña
+* Arturo "La rata" Macías
 * TC3022. Computer Graphics Course.
-* Basic template OpenGL project.
+* Robot walk animation.
 */
 
 // Please don't change lines 9-22 (It helps me to grade)

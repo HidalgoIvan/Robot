@@ -83,7 +83,7 @@ void init() // FOR GLUT LOOP
 	rock = new Cube();
 	rock->setColor(100, 100, 100);
 	rock->setScale(1, 1, 1);
-	rock->setPosition(0, -2, -5);
+	rock->setPosition(-3, -2, -5);
 	rock->setRotation(0, 0, 0);
 	//Head
 	head = new Cube();
@@ -203,7 +203,7 @@ void init() // FOR GLUT LOOP
 
 void display()							// Called for each frame (about 60 times per second).
 {
-	printf("%f		%f		\n",rotationGlobal, rotationStep);
+	//printf("%f		%f		\n",rotationGlobal, rotationStep);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);				// Clear color and depth buffers.
 	glLoadIdentity();												// Reset 3D view matrix.
 	gluLookAt(10.0f, 10.0f, 10.0f,										// Where the camera is.
@@ -213,7 +213,7 @@ void display()							// Called for each frame (about 60 times per second).
 	plane->draw();
 	glPushMatrix();
 	{
-		rock->setPosition(0,-4, rockPosition);
+		rock->setPosition(-3,-4, rockPosition);
 		rock->draw();
 	}
 	glPopMatrix();
@@ -350,6 +350,7 @@ void display()							// Called for each frame (about 60 times per second).
 
 void idle()															// Called when drawing is finished.
 {
+	printf("%f \n", rockPosition);
 	bobbing += bobbingStep;
 	if (bobbing > .3f || bobbing < -.3f) 
 	{
@@ -361,9 +362,9 @@ void idle()															// Called when drawing is finished.
 		rotationStep = -rotationStep;
 	}
 	rockPosition -= rockStep;
-	if (rockPosition < 10)
+	if (rockPosition < -35)
 	{
-		rockPosition = 5;
+		rockPosition = 15;
 	}
 	glutPostRedisplay();											// Display again.
 }
