@@ -1,7 +1,16 @@
-﻿  Robot.cpp
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(50): warning C4305: 'argument': truncation from 'double' to 'GLclampf'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(156): warning C4305: 'argument': truncation from 'double' to 'float'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(239): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-c:\users\iván\desktop\robot\robot\cg_demo\source\robot.cpp(256): warning C4305: 'argument': truncation from 'double' to 'GLfloat'
-  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.exe
-  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Robot\Robot\Debug\CG_Demo.pdb (Full PDB)
+﻿  cParticle.cpp
+c:\users\iván\desktop\graf\cubetesting\cg_demo\header\cparticle.h(8): warning C4068: pragma desconocida
+c:\users\iván\desktop\graf\cubetesting\cg_demo\header\cvector3.h(8): warning C4068: pragma desconocida
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(20): warning C4244: 'inicializando': conversión de 'double' a 'float'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(30): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(31): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(32): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(37): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(38): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(39): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(44): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(45): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(46): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(52): warning C4244: '=': conversión de 'double' a 'GLfloat'; posible pérdida de datos
+c:\users\iván\desktop\graf\cubetesting\cg_demo\source\cparticle.cpp(84): warning C4244: '+=': conversión de 'double' a 'float'; posible pérdida de datos
+  CG_Demo.vcxproj -> C:\Users\Iván\Desktop\Graf\CubeTesting\Debug\CG_Demo.exe

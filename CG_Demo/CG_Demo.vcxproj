@@ -22,7 +22,7 @@
     <ProjectGuid>{E9C488D1-C6B4-4622-8167-68C09F0C8B5A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>CG_Demo</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -147,13 +147,47 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="source\CG_Demo.cpp" />
+    <ClCompile Include="source\cParticle.cpp" />
+    <ClCompile Include="source\cPiece.cpp" />
+    <ClCompile Include="source\cTexture.cpp" />
     <ClCompile Include="source\Cube.cpp" />
-    <ClCompile Include="source\main.cpp" />
-    <ClCompile Include="source\Robot.cpp" />
+    <ClCompile Include="source\cVector3.cpp" />
+    <ClCompile Include="source\glm.cpp" />
+    <ClCompile Include="source\glmimg.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\Cube.h" />
-    <ClInclude Include="header\Robot.h" />
+    <ClInclude Include="header\cParticle.h" />
+    <ClInclude Include="header\cPoint.h" />
+    <ClInclude Include="header\cSphere.h" />
+    <ClInclude Include="header\cTexture.h" />
+    <ClInclude Include="header\cTriangle.h" />
+    <ClInclude Include="header\cVector3.h" />
+    <ClInclude Include="header\glm.h" />
+    <ClInclude Include="header\GL\eglew.h" />
+    <ClInclude Include="header\GL\freeglut.h" />
+    <ClInclude Include="header\GL\freeglut_ext.h" />
+    <ClInclude Include="header\GL\freeglut_std.h" />
+    <ClInclude Include="header\GL\glew.h" />
+    <ClInclude Include="header\GL\glut.h" />
+    <ClInclude Include="header\GL\glxew.h" />
+    <ClInclude Include="header\GL\wglew.h" />
+    <ClInclude Include="header\hCube.h" />
+    <ClInclude Include="header\hPiece.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\base.mtl" />
+    <None Include="assets\Pieza2.mtl" />
+    <None Include="freeglut.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\freeglut.lib" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\base_phong1SG_BaseColor.tga" />
+    <Image Include="assets\base_phong1SG_Height.tga" />
+    <Image Include="assets\pieza2 _initialShadingGroup_BaseColor.tga" />
+    <Image Include="assets\pieza2 _initialShadingGroup_Height.tga" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
